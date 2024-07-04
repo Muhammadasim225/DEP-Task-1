@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        /* Product Grid Styles */
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Product Name Styles */
+        .product-name {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Product Description Styles */
+        .product-description {
+            font-size: 1em;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        /* Product Price Styles */
+        .product-price {
+            font-size: 1.2em;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        /* Product Category Styles */
+        .product-category {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        a {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .add-btn:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .insert-btn{
+            background-color: #dc3545;
+            color: #fff;
+            cursor:pointer;
+            text-decoration: none;
+            margin-left:1062px;
+            margin-bottom:300px;
+            margin-top:200px;
+
+
+        }
+        .insert-btn:hover{
+            background-color: #c82333;
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="/"class="insert-btn">Create New</a>
+
+        <h1>Our Products</h1> 
+        <div class="product-grid">
+            <% if (rows.length > 0) { %>
+                <% rows.forEach((data) => { %>
+                    <div class="product-card">
+                        <h2 class="product-name">Name: <%= data.name %></h2>
+                        <p class="product-description">Description: <%= data.description %></p>
+                        <p class="product-price">Price: <%= data.price %></p>
+                        <p class="product-category">Category: <%= data.category %></p>
+                        <div class="product-actions">
+                            <a href="/product/edit?id=<%- data.id %>" class="add-btn">Edit</a>
+                            <a href="/product/delete?id=<%- data.id %>"class="delete-btn">Delete</a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="product-card">
+                    <h1>No data found</h1>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
